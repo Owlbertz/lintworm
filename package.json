@@ -1,10 +1,10 @@
 {
   "name": "lintworm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Gulp plugin to lint all kind of files.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp lintworm:all --gulpfile test/gulpfile.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "event-stream": "^3.3.4",
     "gulp-util": "^3.0.8",
     "through": "^2.3.8"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

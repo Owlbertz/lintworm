@@ -32,7 +32,13 @@ var lintworm = function (searchStrings, options) {
   function report() {
     var summary = '------------------------------------------------------------\n';
     summary += 'Found ' + overallFindingsPerLevel[LOG_LEVELS.ERROR] + ' errors and ' + overallFindingsPerLevel[LOG_LEVELS.WARN] + ' warnings.';
-    console.log(summary[overallFindingsPerLevel[LOG_LEVELS.ERROR] ? 'red' : 'yellow']);
+    var reportColor = 'green';
+    if (overallFindingsPerLevel[LOG_LEVELS.ERROR]) {
+      reportColor = 'red';
+    } else if (overallFindingsPerLevel[LOG_LEVELS.WARN]) {
+      reportColor = 'yellow';
+    }
+    console.log(summary[reportColor]);
     if (overallFindingsPerLevel[LOG_LEVELS.ERROR] && options.failOnError) {
       this.emit('error', new PluginError('lintworm', 'Found ' + overallFindingsPerLevel[LOG_LEVELS.ERROR] + ' errors and ' + overallFindingsPerLevel[LOG_LEVELS.WARN] + ' warnings.'));
     }
