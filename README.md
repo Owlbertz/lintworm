@@ -38,13 +38,16 @@ The default level of reported findings.
 Default value is `'warn'`.
 
 #### failOnError
-Whether the task should fail if at least on finding with error level is found.
+Whether the task should fail if at least one finding with error level is found.
 
 Default value is `true`.
 
 ## Full example
 The following gulp-task
 ```javascript
+var gulp = require('gulp');
+var lintworm = require('lintworm');
+
 gulp.task('lintworm', function() {
     return gulp.src(['./src/**/*'])
         .pipe(lintworm([
