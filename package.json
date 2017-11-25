@@ -1,6 +1,6 @@
 {
   "name": "lintworm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gulp plugin to lint all kind of files.",
   "main": "index.js",
   "scripts": {
