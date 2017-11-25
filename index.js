@@ -2,6 +2,7 @@ var es = require('event-stream');
 var colors = require('colors');
 var PluginError = require('gulp-util').PluginError;
 var through = require('through2');
+var minimatch = require('minimatch');
 
 var LOG_LEVELS = {
   WARN: 'warn',
@@ -80,10 +81,9 @@ var lintworm = function (searchStrings, options) {
             continue;
           }
           if (filePattern) { // If a file pattern is set, check if the file can be skipped
-            if (typeof filePattern === 'string' && file.path.indexOf(filePattern) === -1) {
-              continue; // Skip this keyword if file is not within the given file pattern
-            } else if (file.path.search(filePattern) === -1) {
-              continue; // Skip this keyword if file is not within the given file pattern
+            let relativeFilePath = file.path.replace(process.cwd() + '/', '');
+            if (!minimatch(relativeFilePath, filePattern)) {
+              continue;
             }
           }
   

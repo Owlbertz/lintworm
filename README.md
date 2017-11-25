@@ -26,7 +26,7 @@ or it can be an array of objects:
 [{
     string: 'TODO',
     level: 'error' // Override default level for this string
-    file: /src\/\.+\.js/ // Specify files to check with this keyword
+    file: 'src/*.js' // Specify files to check with this keyword using glob pattern
 }]
 ```
 
@@ -59,7 +59,7 @@ gulp.task('lintworm', function() {
             // Error on @ts-ignore statements that do not contain an explanation
             {string: /@ts\-ignore$/, level: 'error'},
             // Warn on skipped tests in spec-files
-            {string: 'skip', level: 'warn', file: '.spec.ts'}
+            {string: 'skip', level: 'warn', file: '*.spec.ts'}
         ]));
 });
 ```

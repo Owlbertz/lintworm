@@ -1,6 +1,6 @@
 {
   "name": "lintworm",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Gulp plugin to lint all kind of files.",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
     "colors": "^1.1.2",
     "event-stream": "^3.3.4",
     "gulp-util": "^3.0.8",
+    "minimatch": "^3.0.4",
     "through": "^2.3.8"
   },
   "devDependencies": {
