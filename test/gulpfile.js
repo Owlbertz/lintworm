@@ -6,8 +6,7 @@ gulp.task('lintworm:error', function (cb) {
     console.log('Should find one error.');
     return gulp.src(['./files/error.txt'])
         .pipe(lintworm([
-            { string: 'ERROR', level: 'error' },
-            { string: 'WARNING', level: 'warn' }
+            { string: 'ERROR', level: 'error' }
         ])).on('end', cb);
 });
 
@@ -15,7 +14,6 @@ gulp.task('lintworm:warn', function (cb) {
     console.log('Should find one warning.');
     return gulp.src(['./files/warning.txt'])
         .pipe(lintworm([
-            { string: 'ERROR', level: 'error' },
             { string: 'WARNING', level: 'warn' }
         ])).on('end', cb);
 });
@@ -29,4 +27,12 @@ gulp.task('lintworm:none', function (cb) {
         ])).on('end', cb);
 });
 
-gulp.task('lintworm:all', ['lintworm:error', 'lintworm:warn', 'lintworm:none']);
+gulp.task('lintworm:skip-error', function (cb) {
+    console.log('Should find nothing.');
+    return gulp.src(['./files/error.txt'])
+        .pipe(lintworm([
+            { string: 'ERROR', level: 'error', files: 'notmatchingstring' }
+        ])).on('end', cb);
+});
+
+gulp.task('lintworm:all', ['lintworm:error', 'lintworm:warn', 'lintworm:none', 'lintworm:skip-error']);

@@ -63,17 +63,28 @@ var lintworm = function (searchStrings, options) {
         for (var i = 0; i < searchStrings.length; i++) { // Check for each seach string
           var currentSearchStringValue = null;
           var level = options.level;
+          var filePattern = null;
   
           if (typeof searchStrings[i] === 'object' && searchStrings[i].hasOwnProperty('string')) { // Object
             currentSearchStringValue = searchStrings[i].string;
             if (searchStrings[i].hasOwnProperty('level')) {
               level = searchStrings[i].level;
             }
+            if (searchStrings[i].hasOwnProperty('files')) {
+              filePattern = searchStrings[i].files;
+            }
           } else { // String or regular expression
             currentSearchStringValue = searchStrings[i];
           }
           if (!currentSearchStringValue) {
             continue;
+          }
+          if (filePattern) { // If a file pattern is set, check if the file can be skipped
+            if (typeof filePattern === 'string' && file.path.indexOf(filePattern) === -1) {
+              continue; // Skip this keyword if file is not within the given file pattern
+            } else if (file.path.search(filePattern) === -1) {
+              continue; // Skip this keyword if file is not within the given file pattern
+            }
           }
   
           var characterPositionNumber = -1;
