@@ -1,11 +1,11 @@
+[![NPM](https://nodei.co/npm/lintworm.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/lintworm/)
+
 # Lintworm
 
 Gulp plugin to lint all kind of files based on keywords.
 
-[![NPM](https://nodei.co/npm/lintworm.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/lintworm/)
-
 ## Usage
-![Usage exmple](https://media.giphy.com/media/xUOxf943vMcwDpv8K4/giphy.gif)
+![Usage exmple](https://media.giphy.com/media/3o6fJ7hP5EM9EnwVPi/giphy.gif)
 
 Install Lintworm using npm:
 ```
