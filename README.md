@@ -1,9 +1,21 @@
 # Lintworm
 
-Linting of all file types based on keywords.
+Gulp plugin to lint all kind of files based on keywords.
+
+[![NPM](https://nodei.co/npm/lintworm.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/lintworm/)
 
 ## Usage
+Install Lintworm using npm:
+```
+npm install lintworm --save-dev
+```
+
+Then use it in your Gulp tasks:
+
 ```javascript
+var gulp = require('gulp');
+var lintworm = require('lintworm');
+
 gulp.task('lintworm', function() {
     return gulp.src(['./src/**/*'])
            .pipe(lintworm(strings, options));

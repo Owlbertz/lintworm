@@ -1,7 +1,7 @@
 {
   "name": "lintworm",
   "version": "0.0.4",
-  "description": "Gulp plugin to lint all kind of files.",
+  "description": "Gulp plugin to lint all kind of files based on keywords.",
   "main": "index.js",
   "scripts": {
     "test": "gulp lintworm:all --gulpfile test/gulpfile.js"
