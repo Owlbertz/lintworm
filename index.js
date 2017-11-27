@@ -1,4 +1,3 @@
-var es = require('event-stream');
 var colors = require('colors');
 var PluginError = require('gulp-util').PluginError;
 var through = require('through2');
@@ -30,7 +29,7 @@ var lintworm = function (searchStrings, options) {
    * Will emit an error if conditions are met.
    * 
    */
-  function report() {
+  function report(cb) {
     var summary = '------------------------------------------------------------\n';
     summary += 'Found ' + overallFindingsPerLevel[LOG_LEVELS.ERROR] + ' errors and ' + overallFindingsPerLevel[LOG_LEVELS.WARN] + ' warnings.';
     var reportColor = 'green';
@@ -41,16 +40,17 @@ var lintworm = function (searchStrings, options) {
     }
     console.log(summary[reportColor]);
     if (overallFindingsPerLevel[LOG_LEVELS.ERROR] && options.failOnError) {
-      this.emit('error', new PluginError('lintworm', 'Found ' + overallFindingsPerLevel[LOG_LEVELS.ERROR] + ' errors and ' + overallFindingsPerLevel[LOG_LEVELS.WARN] + ' warnings.'));
+      cb(new PluginError('lintworm', 'Found ' + overallFindingsPerLevel[LOG_LEVELS.ERROR] + ' errors and ' + overallFindingsPerLevel[LOG_LEVELS.WARN] + ' warnings.'));
     }
+    cb();
   };
 
   /**
    * Checks the given file based on the search strings provided as arguments.
    * 
    * @param {any} file File to check.
-   * @param {any} encoding Encoding of the file.
-   * @param {any} cb Callback to call when finished.
+   * @param {string} encoding Encoding of the file.
+   * @param {(err?: any, data?: any) => void} cb Callback to call when finished.
    */
   function checkFile(file, encoding, cb) {
     if (file.isBuffer()) {
@@ -129,6 +129,8 @@ var lintworm = function (searchStrings, options) {
         console.log(output);
       }
       cb(null, file);
+    } else {
+      cb(new PluginError('lintworm', 'Input needs to be a buffer'), null);
     }
   }
 
